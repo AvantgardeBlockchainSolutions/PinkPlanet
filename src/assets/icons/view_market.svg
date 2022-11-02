@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="245" height="73" viewBox="0 0 245 73">
+  <defs>
+    <filter id="Rectangle_4254" x="0" y="0" width="245" height="73" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#55ff76"/>
+      <stop offset="1" stop-color="#27ac40"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_2161" data-name="Group 2161" transform="translate(6227 -13709)">
+    <g id="Component_45_2" data-name="Component 45 – 2" transform="translate(-6212 13721)">
+      <g transform="matrix(1, 0, 0, 1, -15, -12)" filter="url(#Rectangle_4254)">
+        <g id="Rectangle_4254-2" data-name="Rectangle 4254" transform="translate(15 12)" stroke="rgba(255,255,255,0.15)" stroke-width="1">
+          <rect width="215" height="43" rx="21.5" stroke="none"/>
+          <rect x="0.5" y="0.5" width="214" height="42" rx="21" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <text id="View_Markets" data-name="View Markets" transform="translate(-6036 13749)" fill="#fff" font-size="18" font-family="MontserratBold, Montserrat" font-weight="700"><tspan x="-128.088" y="0">View Markets</tspan></text>
+    <path id="down-arrow_3_" data-name="down-arrow (3)" d="M7.059,11.9,0,4.841,1.853,2.9,7.059,8.106,12.265,2.9l1.853,1.941Z" transform="translate(-6029.107 13750.059) rotate(-90)" fill="#666"/>
+    <g id="Group_2160" data-name="Group 2160" transform="translate(-7234 13607)">
+      <rect id="Rectangle_3638" data-name="Rectangle 3638" width="4.5" height="14.25" rx="2.25" transform="translate(1042 130.75)" fill="url(#linear-gradient)"/>
+      <rect id="Rectangle_3639" data-name="Rectangle 3639" width="4.5" height="10.5" rx="2.25" transform="translate(1048.75 134.5)" opacity="0.4" fill="url(#linear-gradient)"/>
+      <rect id="Rectangle_3640" data-name="Rectangle 3640" width="4.5" height="18" rx="2.25" transform="translate(1055.5 127)" fill="url(#linear-gradient)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
+  <g id="Group_762" data-name="Group 762" transform="translate(-396 -421)">
+    <g id="Group_761" data-name="Group 761">
+      <rect id="Rectangle_574" data-name="Rectangle 574" width="80" height="80" rx="40" transform="translate(396 421)" fill="#55fe83" opacity="0.2"/>
+      <rect id="Rectangle_580" data-name="Rectangle 580" width="60" height="60" rx="30" transform="translate(406 431)" fill="#55fe83" opacity="0.2"/>
+      <g id="padlock_1_" data-name="padlock (1)" transform="translate(368.201 446)">
+        <g id="Group_130" data-name="Group 130" transform="translate(56.8)">
+          <path id="Path_99" data-name="Path 99" d="M59.27,8.393v2.918h-.2A2.246,2.246,0,0,0,56.8,13.526v12.2a2.246,2.246,0,0,0,2.271,2.215L67.87,31l8.658-3.057A2.246,2.246,0,0,0,78.8,25.728V13.52a2.246,2.246,0,0,0-2.271-2.215H76.47V8.387a8.6,8.6,0,0,0-17.2.006Zm9.876,11.773a.47.47,0,0,0-.222.445c.006.9.006,1.787.006,2.684h0a.95.95,0,0,1-.515.9,1.072,1.072,0,0,1-1.6-.9V23.29c0-.9,0-1.793.006-2.689a.453.453,0,0,0-.2-.423,2.014,2.014,0,0,1-.691-2.518,2.157,2.157,0,0,1,2.324-1.2,2.1,2.1,0,0,1,1.768,2.027A1.965,1.965,0,0,1,69.146,20.166ZM63.035,8.393a4.837,4.837,0,0,1,9.671,0v2.918H63.035Z" transform="translate(-56.8)" fill="#55fe83"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="35" viewBox="0 0 50 35">
+  <g id="Group_1473" data-name="Group 1473" transform="translate(-132 -543)">
+    <g id="Rectangle_3728" data-name="Rectangle 3728" transform="translate(132 543)" fill="#55ff76" stroke="rgba(255,255,255,0.15)" stroke-width="1" opacity="0.2">
+      <rect width="50" height="35" rx="10" stroke="none"/>
+      <rect x="0.5" y="0.5" width="49" height="34" rx="9.5" fill="none"/>
+    </g>
+    <path id="down-arrow_3_" data-name="down-arrow (3)" d="M6.274,8,0,1.725,1.647,0,6.274,4.627,10.9,0l1.647,1.725Z" transform="translate(146.265 567.009) rotate(-90)" fill="#55ff76" opacity="0.2"/>
+    <path id="down-arrow_3_2" data-name="down-arrow (3)" d="M6.274,8,0,1.725,1.647,0,6.274,4.627,10.9,0l1.647,1.725Z" transform="translate(153.215 567.009) rotate(-90)" fill="#55ff76" opacity="0.6"/>
+    <path id="down-arrow_3_3" data-name="down-arrow (3)" d="M6.274,8,0,1.725,1.647,0,6.274,4.627,10.9,0l1.647,1.725Z" transform="translate(160.165 567.009) rotate(-90)" fill="#55ff76"/>
+  </g>
+</svg>

@@ -1,0 +1,147 @@
+diff --git a/src/modules/block-chain/Swap.ts b/src/modules/block-chain/Swap.ts
+index ae360b8b..d9ba84d5 100644
+--- a/src/modules/block-chain/Swap.ts
++++ b/src/modules/block-chain/Swap.ts
+@@ -97,7 +97,7 @@ const convertToWeiInternal = (data: any, decimals: any) => {
+ 
+ export const convertToEther = (data: any, decimals: number): any => {
+   data = noExponents(data)
+-  return noExponents(formatUnits(data.toString(), decimals)) //decimals = 18,8
++  return noExponents(formatUnits(data.toString(), decimals.toString())) //decimals = 18,8
+ }
+ 
+ const noExponents = function (num: any) {
+@@ -597,18 +597,18 @@ export const returnQuotePrice = async (amountInEther: any, flag: boolean, pairAd
+     const ROUTER_INSTANCE = await selectInstance(instanceType.PLANETROUTER)
+     let quotePrice: any
+     if (flag) {
+-      if (tokenA === token0) quotePrice = ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
++      if (tokenA === token0) quotePrice = await ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
+         Math.pow(10,await decimals(token0))), getReserves[0], getReserves[1]).call()
+-      else quotePrice = ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
++      else quotePrice = await ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
+         Math.pow(10,await decimals(token0))), getReserves[1], getReserves[0]).call()
+       if (tokenA === token0) 
+       return convertToEther(quotePrice,await decimals(token1))
+       else
+       return convertToEther(quotePrice,await decimals(token0))
+     } else {
+-      if (tokenA === token0) quotePrice = ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
++      if (tokenA === token0) quotePrice = await ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
+         Math.pow(10,await decimals(token1))), getReserves[1], getReserves[0]).call()
+-      else quotePrice = ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
++      else quotePrice = await ROUTER_INSTANCE.methods.quote(convertToWeiInternal(amountInEther,
+         Math.pow(10,await decimals(token1))), getReserves[0], getReserves[1]).call()
+         if (tokenA === token0) 
+         return convertToEther(quotePrice,await decimals(token0))
+diff --git a/src/modules/swap/components/liquidity/AddLiquidity.tsx b/src/modules/swap/components/liquidity/AddLiquidity.tsx
+index 35c656d6..995dd79e 100644
+--- a/src/modules/swap/components/liquidity/AddLiquidity.tsx
++++ b/src/modules/swap/components/liquidity/AddLiquidity.tsx
+@@ -84,18 +84,30 @@ const AddLiquidity = (props: any) => {
+ 
+   useEffect(() => {
+     const getPairExistVal = async () => {
++      let pairExist: any = false;
+       try {
+-        const pairExist: any = await returnPairExistOrNot(tokenList[0].address, tokenList[1].address)
++        pairExist = await returnPairExistOrNot(tokenList[0].address, tokenList[1].address)
+         setIsPairExist(pairExist)
++      }
++      catch (error) {
++        setIsPairExist(false)
++        setPairAddress('')
++      }
++
++      try {
+         if (pairExist) {
+           const pairAddressVal = await returnPairAddress(tokenList[0].address, tokenList[1].address)
+           setPairAddress(pairAddressVal)
+-          const pollDataVal: any = await userPoolDetails(tokenList[0].address, tokenList[1].address, pairAddressVal, selector.ethData.address)
+-          setPoolDetails(pollDataVal)
++          if((selector.ethData && selector.ethData.address))
++          {
++            const pollDataVal: any = await userPoolDetails(tokenList[0].address, tokenList[1].address, pairAddressVal, selector.ethData.address)
++            setPoolDetails(pollDataVal)
++          }
++          
+         }
+       } catch (error) {
+-        setIsPairExist(false)
+-        setPairAddress('')
++        //console.log('error')
++        console.log(error)
+       }
+     }
+     if (!!tokenList && tokenList.length > 0) {
+@@ -179,18 +191,28 @@ const AddLiquidity = (props: any) => {
+   }
+ 
+   const getPairExistVal = async (token1: any, token2: any) => {
++    let pairExist: any = false;
+     try {
+-      const pairExist: any = await returnPairExistOrNot(token1.address, token2.address)
++      pairExist = await returnPairExistOrNot(token1.address, token2.address)
+       setIsPairExist(pairExist)
++    }
++    catch (error) {
++      setIsPairExist(false)
++      setPairAddress('')
++    }
++    try {
+       if (pairExist) {
+         const pairAddressVal = await returnPairAddress(token1.address, token2.address)
+         setPairAddress(pairAddressVal)
+-        const pollDataVal: any = await userPoolDetails(token1.address, token2.address, pairAddressVal, selector.ethData.address)
+-        setPoolDetails(pollDataVal)
++        if((selector.ethData && selector.ethData.address))
++        {
++          const pollDataVal: any = await userPoolDetails(token1.address, token2.address, pairAddressVal, selector.ethData.address)
++          setPoolDetails(pollDataVal)
++        }
+       }
+     } catch (error) {
+-      setIsPairExist(false)
+-      setPairAddress('')
++      //console.log('error');
++      console.log(error);
+     }
+   }
+ 
+@@ -260,7 +282,7 @@ const AddLiquidity = (props: any) => {
+         setShowCnfModal(true)
+       }
+     } catch (error) {
+-      console.log('error----', error)
++      //console.log('error----', error)
+       setConformLdData({})
+       setShowCnfModal(false)
+     } finally {
+@@ -484,7 +506,6 @@ const AddLiquidity = (props: any) => {
+       setFirstAmount(firstAmtVal)
+     }
+   }
+-
+   return (
+     <Fragment>
+       <CardCont>
+diff --git a/src/modules/vaults/components/PlanetGToken.tsx b/src/modules/vaults/components/PlanetGToken.tsx
+index 1c1b409b..eee8afa5 100644
+--- a/src/modules/vaults/components/PlanetGToken.tsx
++++ b/src/modules/vaults/components/PlanetGToken.tsx
+@@ -1,6 +1,6 @@
+ import { useState, useEffect, useCallback } from 'react'
+ import { useSelector, useDispatch } from 'react-redux'
+-import { fetchInfVaultData } from 'logic/action/user.actions'
++import { fetchInfVaultData, fetchPoolData } from 'logic/action/user.actions'
+ import { notificationOpen, notificationClose } from "logic/action/notification.action"
+ import { FlexCont, FlexSBCont, PlanetBtn, PlanetRedBtn, PlanetBrownBtn } from 'shared/styles/styled'
+ import { GTokenWrapper, GTokenWeb, GTokenMob, GTokenCont, GTokenCard, GCardHeader, GActionCont, GTokenImgCont, GTokenTxt, GTokenValTxt, GCardText, GCardDivider, TextBox, GreenTxtBox, StakeTxtImgCont, StakeTxtImgBox, GStakeIconBox, GAquaStakeCont, GTokenInfoCont, StopUnStakingBox, GCardNumTxt, GLoadingText1, GLoadingText2, GLoadingText3, GLoadingText4 } from './style'
+@@ -209,7 +209,6 @@ const PlanetGToken = (props: any) => {
+                     gammaInfData.unstaking_bal = 0
+                     res = await stopUnstakeProcess(userAddress, gammaInfData.infinity_vault_address, gammaInfData.infinityAbi)
+                 }
+-
+                 stopUnStakeNotification('success', tokenName, res.transactionHash)
+                 dispatch(fetchInfVaultData(userAddress, true))
+                 
